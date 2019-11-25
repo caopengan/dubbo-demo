@@ -5,6 +5,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
+import java.util.concurrent.CompletableFuture;
 
 @Component
 public class SpringApplicationRunner implements CommandLineRunner {
@@ -14,7 +15,10 @@ public class SpringApplicationRunner implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        String helloStr = demoService.sayHello("CPA");
-        System.out.println("============="+helloStr);
+        String re = demoService.sayHello("CPA");
+        System.out.println("============="+re);
+
+        CompletableFuture<String> cf = demoService.asyncSayHello("11");
+        System.out.println("====异步调用："+cf.get());
     }
 }
