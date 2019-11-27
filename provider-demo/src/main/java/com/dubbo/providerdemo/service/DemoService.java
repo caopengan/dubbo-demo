@@ -10,4 +10,6 @@ public interface DemoService {
         return CompletableFuture.completedFuture(name);
     };
 
+    String sayHi(String msg);
+
 }
