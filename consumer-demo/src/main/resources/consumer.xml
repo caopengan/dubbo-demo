@@ -16,14 +16,19 @@
 
     <!-- 使用multicast广播注册中心暴露发现服务地址 -->
     <dubbo:registry address="multicast://224.0.0.1:1234?unicast=false" />
+
+    <dubbo:protocol name="dubbo" host="192.168.14.39"/>
+
     <!-- 生成远程服务代理，可以和本地bean一样使用demoService -->
-    <dubbo:reference id="demoService" interface="com.dubbo.providerdemo.service.DemoService" />
+<!--    <dubbo:reference id="demoService" interface="com.dubbo.providerdemo.service.DemoService" />-->
 
-    <dubbo:reference id="callbackService" interface="com.dubbo.providerdemo.service.CallbackService" version="1.0.0"/>
+<!--    <dubbo:reference id="callBackService" interface="com.dubbo.providerdemo.service.CallbackService" />-->
 
-    <bean class="com.dubbo.consumerdemo.service.impl.NotifyImpl" id="notifyService"/>
-    <dubbo:reference id="idemoService" interface="com.dubbo.providerdemo.service.IDemoService" version="1.0.0" group="cn">
-        <dubbo:method name="get" async="true" onreturn="notifyService.onReturn" onthrow="notifyService.onThrow"></dubbo:method>
-    </dubbo:reference>
+<!--    <bean class="com.dubbo.consumerdemo.service.impl.NotifyImpl" id="notifyService"/>-->
+<!--    <dubbo:reference id="idemoService" interface="com.dubbo.providerdemo.service.IDemoService" version="1.0.0" group="cn">-->
+<!--        <dubbo:method name="get" async="true" onreturn="notifyService.onReturn" onthrow="notifyService.onThrow"></dubbo:method>-->
+<!--    </dubbo:reference>-->
+
+    <dubbo:reference id="secondService" interface="com.dubbo.providerdemo.service.SecondService" />
 
 </beans>
