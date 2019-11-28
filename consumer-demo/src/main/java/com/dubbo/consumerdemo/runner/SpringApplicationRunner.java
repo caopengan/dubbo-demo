@@ -1,5 +1,6 @@
 package com.dubbo.consumerdemo.runner;
 
+import com.dubbo.consumerdemo.service.Notify;
 import com.dubbo.consumerdemo.service.impl.NotifyImpl;
 import com.dubbo.providerdemo.CallbackListener;
 import com.dubbo.providerdemo.entity.Person;
@@ -18,23 +19,32 @@ import java.util.concurrent.CompletableFuture;
 @Component
 public class SpringApplicationRunner implements CommandLineRunner {
 
-//    @Resource
-//    DemoService demoService;
+    @Resource
+    DemoService demoService;
 
     @Resource
     SecondService secondService;
 
+    @Resource
+    CallbackService callbackService;
+
+    @Resource
+    IDemoService iDemoService;
+
+//    @Resource
+//    Notify notify;
+
 
     @Override
     public void run(String... args) throws Exception {
-//        String s = demoService.sayHi("luca");
-//        System.out.println("~~~~~~~~~~~"+s);
-//
-//        String re = demoService.sayHello("CPA");
-//        System.out.println("============="+re);
-//
-//        CompletableFuture<String> cf = demoService.asyncSayHello("11");
-//        System.out.println("====异步调用："+cf.get());
+        String s = demoService.sayHi("luca");
+        System.out.println("~~~~~~~~~~~"+s);
+
+        String re = demoService.sayHello("CPA");
+        System.out.println("============="+re);
+
+        CompletableFuture<String> cf = demoService.asyncSayHello("11");
+        System.out.println("====异步调用："+cf.get());
 
 //        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("classpath:consumer.xml");
 //        context.start();
@@ -44,12 +54,12 @@ public class SpringApplicationRunner implements CommandLineRunner {
 
 //        CallbackService callbackService = (CallbackService) context.getBean("callBackService");
 ////
-//        callbackService.addListener("foo.bar", new CallbackListener() {
-//            @Override
-//            public void changed(String msg) {
-//                System.out.println("callback："+msg);
-//            }
-//        });
+        callbackService.addListener("foo.bar", new CallbackListener() {
+            @Override
+            public void changed(String msg) {
+                System.out.println("callback："+msg);
+            }
+        });
 
 //        IDemoService iDemoService = (IDemoService) context.getBean("idemoService");
 //        NotifyImpl notify = (NotifyImpl) context.getBean("notifyService");
