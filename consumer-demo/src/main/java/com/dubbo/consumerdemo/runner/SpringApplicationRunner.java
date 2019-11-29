@@ -28,9 +28,9 @@ public class SpringApplicationRunner implements CommandLineRunner {
     @Resource
     CallbackService callbackService;
 
-    @Resource
-    IDemoService iDemoService;
-
+//    @Resource
+//    IDemoService iDemoService;
+//
 //    @Resource
 //    Notify notify;
 
@@ -46,8 +46,8 @@ public class SpringApplicationRunner implements CommandLineRunner {
         CompletableFuture<String> cf = demoService.asyncSayHello("11");
         System.out.println("====异步调用："+cf.get());
 
-//        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("classpath:consumer.xml");
-//        context.start();
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("classpath:consumer.xml");
+        context.start();
 //        SecondService secondService = (SecondService) context.getBean("secondService");
         String test = secondService.test("test");
         System.out.println("====secondService："+test);
@@ -61,17 +61,17 @@ public class SpringApplicationRunner implements CommandLineRunner {
             }
         });
 
-//        IDemoService iDemoService = (IDemoService) context.getBean("idemoService");
-//        NotifyImpl notify = (NotifyImpl) context.getBean("notifyService");
-//        int requestId = 1;
-//        Person person = iDemoService.get(requestId);
-//        for(int i=0;i<10;i++){
-//            if(!notify.ret.containsKey(requestId)){
-//                Thread.sleep(2000);
-//            }else {
-//                break;
-//            }
-//        }
-//        System.out.println("完毕！！！！");
+        IDemoService iDemoService = (IDemoService) context.getBean("idemoService");
+        NotifyImpl notify = (NotifyImpl) context.getBean("notifyService");
+        int requestId = 1;
+        Person person = iDemoService.get(requestId);
+        for(int i=0;i<10;i++){
+            if(!notify.ret.containsKey(requestId)){
+                Thread.sleep(2000);
+            }else {
+                break;
+            }
+        }
+        System.out.println("完毕！！！！");
     }
 }
