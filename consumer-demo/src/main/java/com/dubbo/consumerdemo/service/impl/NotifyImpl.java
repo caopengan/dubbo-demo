@@ -13,7 +13,7 @@ public class NotifyImpl implements Notify {
 
     @Override
     public void onReturn(Person person, int id) {
-        System.out.println("Person:"+person);
+        System.out.println("调用返回Person："+person);
         ret.put(id,person);
     }
 
