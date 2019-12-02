@@ -15,4 +15,6 @@
 
 4、抛异常java.net.BindException: Address already in use: bind，[DUBBO] qos-server can not bind localhost:22222，具体解决办法如下链接：
   https://blog.csdn.net/u012988901/article/details/84503672
+  
+5、dubbo2.7和2.6之前版本差异明显，建议引用之前将其他引用的版本严格测试之后，才进行线上使用
    
