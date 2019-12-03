@@ -5,7 +5,7 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 
 /**
- * 动态代理工厂实现
+ * JDK动态代理工厂实现
  */
 public class ProxyFactory {
 
